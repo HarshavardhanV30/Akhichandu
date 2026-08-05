@@ -1,3 +1,5 @@
+const cors = require('cors');
+app.use(cors());
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Target form elements
     const contactForm = document.querySelector('.contact-form');
