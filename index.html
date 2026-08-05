@@ -4,14 +4,329 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AkhiChandu</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Base Reset & Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #1f1f1f;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0e0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./assets/WhatsApp Image 2026-07-24 at 9.33.10 PM.jpeg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .hero-content h1 span {
+            color: #d4af37;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #ccc;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #d4af37;
+            color: #121212;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #b3922b;
+        }
+
+        /* Menu Section */
+        #menu {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #d4af37;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background-color: #1f1f1f;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .menu-title-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .menu-title-price h3 {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .price {
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .menu-info p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #181818;
+            padding: 80px 20px;
+        }
+
+        .contact-outer-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #1f1f1f;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .contact-info {
+            padding: 40px;
+            background-color: #252525;
+        }
+
+        .contact-info h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .contact-form {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px;
+            background-color: #121212;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #d4af37;
+        }
+
+        .submit-btn {
+            background-color: #d4af37;
+            color: #121212;
+            padding: 12px;
+            border: none;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #b3922b;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0d0d0d;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Custom Popup Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background-color: #1f1f1f;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
+        .modal-content h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .modal-btn {
+            background-color: #d4af37;
+            color: #121212;
+            border: none;
+            padding: 10px 25px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .modal-btn:hover {
+            background-color: #b3922b;
+        }
+
+        /* Responsive Layout */
+        @media(max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <div class="nav-container">
             <div class="logo">AkhiChandhu</div>
-            
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#menu">Menu</a></li>
@@ -32,133 +347,113 @@
         <h2 class="section-title">Our Signature Dishes</h2>
         <div class="menu-grid">
             
-            <div class="menu-card-wrapper">
-                <div class="menu-card">
-                    <img src="./assets/WhatsApp Image 2026-07-24 at 9.33.10 PM.jpeg" alt="Masala Dosa" class="menu-img">
-                    <div class="menu-info">
-                        <div class="menu-title-price">
-                            <h3>Masala Dosa</h3>
-                            <span class="price">₹25</span>
-                        </div>
-                        <p>Dry-rubbed with dark aromatic spices, slow-smoked for 12 hours, served with activated charcoal infusion.</p>
+            <div class="menu-card">
+                <img src="./assets/WhatsApp Image 2026-07-24 at 9.33.10 PM.jpeg" alt="Masala Dosa" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-title-price">
+                        <h3>Masala Dosa</h3>
+                        <span class="price">₹25</span>
                     </div>
+                    <p>Dry-rubbed with dark aromatic spices, slow-smoked for 12 hours, served with activated charcoal infusion.</p>
                 </div>
             </div>
 
-            <div class="menu-card-wrapper">
-                <div class="menu-card">
-                    <img src="./assets/WhatsApp Image 2026-07-24 at 9.34.35 PM.jpeg" alt="Puri" class="menu-img">
-                    <div class="menu-info">
-                        <div class="menu-title-price">
-                            <h3>Puri</h3>
-                            <span class="price">₹20</span>
-                        </div>
-                        <p>Handcrafted black ink pasta tossed in a luxurious white truffle cream sauce and wild forest mushrooms.</p>
+            <div class="menu-card">
+                <img src="./assets/WhatsApp Image 2026-07-24 at 9.34.35 PM.jpeg" alt="Puri" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-title-price">
+                        <h3>Puri</h3>
+                        <span class="price">₹20</span>
                     </div>
+                    <p>Handcrafted black ink pasta tossed in a luxurious white truffle cream sauce and wild forest mushrooms.</p>
                 </div>
             </div>
 
-            <div class="menu-card-wrapper">
-                <div class="menu-card">
-                    <img src="./assets/WhatsApp Image 2026-07-24 at 9.36.14 PM.jpeg" alt="Ragi idli" class="menu-img">
-                    <div class="menu-info">
-                        <div class="menu-title-price">
-                            <h3>Ragi idli</h3>
-                            <span class="price">₹20</span>
-                        </div>
-                        <p>75% dark Belgian chocolate ganache crust, topped with activated charcoal sea salt flakes.</p>
+            <div class="menu-card">
+                <img src="./assets/WhatsApp Image 2026-07-24 at 9.36.14 PM.jpeg" alt="Ragi idli" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-title-price">
+                        <h3>Ragi idli</h3>
+                        <span class="price">₹20</span>
                     </div>
+                    <p>75% dark Belgian chocolate ganache crust, topped with activated charcoal sea salt flakes.</p>
                 </div>
             </div>
 
-            <div class="menu-card-wrapper">
-                <div class="menu-card">
-                    <img src="./assets/prons.jpeg" alt="Grilled tamarind-marinated prawns" class="menu-img">
-                    <div class="menu-info">
-                        <div class="menu-title-price">
-                            <h3>Grilled tamarind-marinated prawns</h3>
-                            <span class="price">₹60</span>
-                        </div>
-                        <p>75% dark Belgian chocolate ganache crust, topped with activated charcoal sea salt flakes.</p>
+            <div class="menu-card">
+                <img src="./assets/prons.jpeg" alt="Grilled tamarind-marinated prawns" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-title-price">
+                        <h3>Grilled tamarind-marinated prawns</h3>
+                        <span class="price">₹60</span>
                     </div>
+                    <p>75% dark Belgian chocolate ganache crust, topped with activated charcoal sea salt flakes.</p>
                 </div>
             </div>
 
-            <div class="menu-card-wrapper">
-                <div class="menu-card">
-                    <img src="./assets/mutton.jpeg" alt="Aagra mutton thali" class="menu-img">
-                    <div class="menu-info">
-                        <div class="menu-title-price">
-                            <h3>Aagra mutton thali</h3>
-                            <span class="price">₹120</span>
-                        </div>
-                        <p>75% dark Belgian chocolate ganache crust, topped with activated charcoal sea salt flakes.</p>
+            <div class="menu-card">
+                <img src="./assets/mutton.jpeg" alt="Aagra mutton thali" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-title-price">
+                        <h3>Aagra mutton thali</h3>
+                        <span class="price">₹120</span>
                     </div>
+                    <p>75% dark Belgian chocolate ganache crust, topped with activated charcoal sea salt flakes.</p>
                 </div>
             </div>
 
-            <div class="menu-card-wrapper">
-                <div class="menu-card">
-                    <img src="./assets/fish thalli.jpeg" alt="Fish Thalli" class="menu-img">
-                    <div class="menu-info">
-                        <div class="menu-title-price">
-                            <h3>Fish Thalli</h3>
-                            <span class="price">₹100</span>
-                        </div>
-                        <p>75% dark Belgian chocolate ganache crust, topped with activated charcoal sea salt flakes.</p>
+            <div class="menu-card">
+                <img src="./assets/fish thalli.jpeg" alt="Fish Thalli" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-title-price">
+                        <h3>Fish Thalli</h3>
+                        <span class="price">₹100</span>
                     </div>
+                    <p>75% dark Belgian chocolate ganache crust, topped with activated charcoal sea salt flakes.</p>
                 </div>
             </div>
 
-            <div class="menu-card-wrapper">
-                <div class="menu-card">
-                    <img src="./assets/butter chicken thali.jpeg" alt="Butter chicken thali" class="menu-img">
-                    <div class="menu-info">
-                        <div class="menu-title-price">
-                            <h3>Butter chicken thali</h3>
-                            <span class="price">₹80</span>
-                        </div>
-                        <p>75% dark Belgian chocolate ganache crust, topped with activated charcoal sea salt flakes.</p>
+            <div class="menu-card">
+                <img src="./assets/butter chicken thali.jpeg" alt="Butter chicken thali" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-title-price">
+                        <h3>Butter chicken thali</h3>
+                        <span class="price">₹80</span>
                     </div>
+                    <p>75% dark Belgian chocolate ganache crust, topped with activated charcoal sea salt flakes.</p>
                 </div>
             </div>
 
-            <div class="menu-card-wrapper">
-                <div class="menu-card">
-                    <img src="./assets/cherryies desert.jpeg" alt="Cherry Desert" class="menu-img">
-                    <div class="menu-info">
-                        <div class="menu-title-price">
-                            <h3>Cherry Desert</h3>
-                            <span class="price">₹30</span>
-                        </div>
-                        <p>Dry-rubbed with dark aromatic spices, slow-smoked for 12 hours, served with activated charcoal infusion.</p>
+            <div class="menu-card">
+                <img src="./assets/cherryies desert.jpeg" alt="Cherry Desert" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-title-price">
+                        <h3>Cherry Desert</h3>
+                        <span class="price">₹30</span>
                     </div>
+                    <p>Dry-rubbed with dark aromatic spices, slow-smoked for 12 hours, served with activated charcoal infusion.</p>
                 </div>
             </div>
 
-            <div class="menu-card-wrapper">
-                <div class="menu-card">
-                    <img src="./assets/cherry desert.jpeg" alt="Pastries On Plate" class="menu-img">
-                    <div class="menu-info">
-                        <div class="menu-title-price">
-                            <h3>Pastries On Plate</h3>
-                            <span class="price">₹50</span>
-                        </div>
-                        <p>Dry-rubbed with dark aromatic spices, slow-smoked for 12 hours, served with activated charcoal infusion.</p>
+            <div class="menu-card">
+                <img src="./assets/cherry desert.jpeg" alt="Pastries On Plate" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-title-price">
+                        <h3>Pastries On Plate</h3>
+                        <span class="price">₹50</span>
                     </div>
+                    <p>Dry-rubbed with dark aromatic spices, slow-smoked for 12 hours, served with activated charcoal infusion.</p>
                 </div>
             </div>
 
-            <div class="menu-card-wrapper">
-                <div class="menu-card">
-                    <img src="./assets/pine desert.jpeg" alt="Pine Desert" class="menu-img">
-                    <div class="menu-info">
-                        <div class="menu-title-price">
-                            <h3>Pine Desert</h3>
-                            <span class="price">₹40</span>
-                        </div>
-                        <p>Dry-rubbed with dark aromatic spices, slow-smoked for 12 hours, served with activated charcoal infusion.</p>
+            <div class="menu-card">
+                <img src="./assets/pine desert.jpeg" alt="Pine Desert" class="menu-img">
+                <div class="menu-info">
+                    <div class="menu-title-price">
+                        <h3>Pine Desert</h3>
+                        <span class="price">₹40</span>
                     </div>
+                    <p>Dry-rubbed with dark aromatic spices, slow-smoked for 12 hours, served with activated charcoal infusion.</p>
                 </div>
             </div>
 
@@ -181,7 +476,7 @@
                     <p>Friday - Sunday: 4:00 PM - 1:00 AM</p>
                 </div>
 
-                <form class="contact-form" id="contactForm" action="#" method="POST" novalidate>
+                <form class="contact-form" id="contactForm" novalidate>
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" placeholder="Your Name" required>
@@ -214,6 +509,7 @@
         </div>
     </div>
 
+    <!-- Working JavaScript Frontend & Railway Backend Connection Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('contactForm');
@@ -226,31 +522,40 @@
             function showModal(title, message) {
                 modalTitle.textContent = title;
                 modalMessage.textContent = message;
-                modal.classList.add('active');
                 modal.style.display = 'flex';
             }
 
             modalCloseBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
                 modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
             });
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const message = document.getElementById('message').value.trim();
+                const nameValue = document.getElementById('name').value.trim();
+                const emailValue = document.getElementById('email').value.trim();
+                const messageValue = document.getElementById('message').value.trim();
 
-                if (!name || !email || !message) {
-                    showModal('Validation Error', 'Please fill in all required fields.');
+                if (!nameValue || !emailValue || !messageValue) {
+                    showModal('Validation Error', 'Please fill in all required fields before booking.');
+                    return;
+                }
+
+                if (!emailValue.includes('@') || !emailValue.includes('.')) {
+                    showModal('Invalid Email', 'Please enter a valid email address.');
                     return;
                 }
 
                 const payload = {
-                    name: name,
-                    email_id: email,
-                    message: message
+                    name: nameValue,
+                    email_id: emailValue,
+                    message: messageValue
                 };
 
                 submitBtn.disabled = true;
@@ -267,15 +572,15 @@
                     });
 
                     if (response.ok) {
-                        showModal('Success!', 'Your reservation inquiry has been submitted successfully.');
+                        showModal('Reservation Successful!', `Thank you, ${nameValue}. Your booking request has been securely sent to our backend server.`);
                         form.reset();
                     } else {
                         const errorData = await response.json().catch(() => ({}));
-                        showModal('Submission Failed', errorData.message || `Server returned error status ${response.status}`);
+                        showModal('Submission Failed', errorData.message || `Server responded with status: ${response.status}`);
                     }
                 } catch (error) {
-                    console.error('Fetch Error Detail:', error);
-                    showModal('Connection Error', 'Unable to connect to the server. Please ensure CORS is enabled on the backend or check the API URL.');
+                    console.error('Backend Connection Error:', error);
+                    showModal('Connection Error', 'Could not reach the Railway server. Please ensure the backend endpoint is active and CORS is properly enabled.');
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Book A Table';
