@@ -5,264 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AkhiChandu</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* ==========================================================================
-           Embedded Responsive & UI Adjustments (Auto-adjust for Mobile/Tablet/Desktop)
-           ========================================================================== */
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        /* Responsive Layout Containers */
-        .container, 
-        #menu, 
-        #contact, 
-        .nav-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: #121212;
-            width: 100%;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-            position: relative;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        /* Hamburger Menu Toggle Button for Mobile */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: #fff;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        /* Responsive Hero Section */
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 15px;
-        }
-
-        .hero-content p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            max-width: 700px;
-            margin: 0 auto 25px auto;
-        }
-
-        /* Auto-adjusting Menu Grid (Desktop: 3 cols, Tablet: 2 cols, Mobile: 1 col) */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-            width: 100%;
-        }
-
-        .menu-card {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            overflow: hidden;
-            border-radius: 8px;
-        }
-
-        .menu-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .menu-info {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        /* Responsive Contact Section Layout */
-        .contact-outer-wrapper {
-            width: 100%;
-            margin-top: 30px;
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            width: 100%;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .form-group input, 
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border-radius: 5px;
-            border: 1px solid #444;
-            background: #222;
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        .submit-btn {
-            padding: 12px 20px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        /* Modal Overlay Adjustments */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.75);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: #222;
-            color: #fff;
-            padding: 25px;
-            border-radius: 8px;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-btn {
-            margin-top: 15px;
-            padding: 8px 20px;
-            cursor: pointer;
-            border: none;
-            border-radius: 4px;
-        }
-
-        /* Media Queries for Tablet and Mobile Views */
-        @media (max-width: 900px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: #121212;
-                padding: 20px;
-                box-shadow: 0 10px 15px rgba(0,0,0,0.3);
-                gap: 15px;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            /* Hamburger animation toggle */
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 6px);
-            }
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(5px, -6px);
-            }
-        }
-    </style>
 </head>
 <body>
 
@@ -271,11 +13,6 @@
             <div class="logo">AkhiChandhu</div>
             
             <!-- Mobile Menu Toggle Button -->
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
 
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
@@ -467,7 +204,7 @@
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 20px; width: 100%;">
+    <footer>
         &copy; 2026 AkhiChandhu. All rights reserved.
     </footer>
 
@@ -480,29 +217,9 @@
         </div>
     </div>
 
-    <!-- JavaScript code connecting form submit event to API endpoint and handling mobile nav toggle -->
+    <!-- JavaScript code connecting form submit event to API endpoint -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Navigation Toggle Handling
-            const menuToggle = document.getElementById('menuToggle');
-            const navLinks = document.getElementById('navLinks');
-
-            if (menuToggle && navLinks) {
-                menuToggle.addEventListener('click', () => {
-                    menuToggle.classList.toggle('active');
-                    navLinks.classList.toggle('active');
-                });
-
-                // Auto-close mobile menu when a nav link is clicked
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        menuToggle.classList.remove('active');
-                        navLinks.classList.remove('active');
-                    });
-                });
-            }
-
-            // Contact Form and API Submission Logic
             const form = document.getElementById('contactForm');
             const submitBtn = document.getElementById('submitBtn');
             const modal = document.getElementById('popupModal');
@@ -514,11 +231,13 @@
             function showModal(title, message) {
                 modalTitle.textContent = title;
                 modalMessage.textContent = message;
+                modal.classList.add('active'); // Ensure CSS targets .active or display style
                 modal.style.display = 'flex';
             }
 
             // Close modal event
             modalCloseBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
                 modal.style.display = 'none';
             });
 
